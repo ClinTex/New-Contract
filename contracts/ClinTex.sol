@@ -19,7 +19,11 @@ contract ClinTex is ERC20, Ownable {
         _;
     } 
 
-    function transfer(address recipient, uint256 amount) public virtual override isFreeze(_msgSender(), amount) returns (bool) {
+    function mint(address account, uint256 amount) public onlyOwner {
+        _mint(account, amount);
+    }
+
+    function transfer(address recipient, uint256 amount) public override isFreeze(_msgSender(), amount) returns (bool) {
         _transfer(_msgSender(), recipient, amount);
         return true;
     }
