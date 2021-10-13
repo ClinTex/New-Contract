@@ -16,7 +16,7 @@ contract ClinTex is ERC20, Ownable {
 
     //isFreeze check sender transfer for amount frozen tokens
     modifier isFreeze(address sender, uint256 amount) {
-        require(isTransferFreezeTokens(sender, amount) == false, "ClinTex: couldn't transfer frozen tokens");
+        require(isTransferFreezeTokens(sender, amount) == false, "ClinTex: could not transfer frozen tokens");
         _;
     } 
 
