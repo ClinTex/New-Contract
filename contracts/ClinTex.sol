@@ -28,8 +28,7 @@ contract ClinTex is ERC20, Ownable {
 
     //transfer is basic transfer with isFreeze modifer
     function transfer(address recipient, uint256 amount) public virtual override isFreeze(_msgSender(), amount) returns (bool) {
-        super.transfer(recipient, amount);
-        return true;
+        return super.transfer(recipient, amount);
     }
 
     //transferFrom is basic transferFrom with isFreeze modifer
