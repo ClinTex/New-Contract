@@ -71,7 +71,7 @@ describe("ClinTex", function () {
       await clintex.setUnfreezeDate(1604178000);
       await clintex.setFreezeTokens(alice.address, await clintex.balanceOf(alice.address));
 
-      var bobBalanceBefore = Number(await clintex.balanceOf(bob.address));
+      var bobBalanceBefore = BigNumber(await clintex.balanceOf(bob.address));
       await clintex.connect(alice).transfer(bob.address, 1000);
       expect(await clintex.balanceOf(bob.address)).to.equal(bobBalanceBefore + 1000);
     })
@@ -80,7 +80,7 @@ describe("ClinTex", function () {
       await clintex.setUnfreezeDate(1604178000);
       await clintex.setFreezeTokens(alice.address, await clintex.balanceOf(alice.address));
 
-      var bobBalanceBefore = Number(await clintex.balanceOf(bob.address));
+      var bobBalanceBefore = BigNumber(await clintex.balanceOf(bob.address));
       await clintex.transferFrom(alice.address, bob.address, 1000);
       expect(await clintex.balanceOf(bob.address)).to.equal(bobBalanceBefore + 1000);
     })
@@ -89,7 +89,7 @@ describe("ClinTex", function () {
       await clintex.setUnfreezeDate(1604178000);
       await clintex.setFreezeTokens(alice.address, await clintex.balanceOf(alice.address) / 2);
 
-      var bobBalanceBefore = Number(await clintex.balanceOf(bob.address));
+      var bobBalanceBefore = BigNumber(await clintex.balanceOf(bob.address));
       await clintex.connect(alice).transfer(bob.address, 1000);
       expect(await clintex.balanceOf(bob.address)).to.equal(bobBalanceBefore + 1000);
     })
@@ -98,7 +98,7 @@ describe("ClinTex", function () {
       await clintex.setUnfreezeDate(1604178000);
       await clintex.setFreezeTokens(alice.address, await clintex.balanceOf(alice.address) / 2);
 
-      var bobBalanceBefore = Number(await clintex.balanceOf(bob.address));
+      var bobBalanceBefore = BigNumber(await clintex.balanceOf(bob.address));
       await clintex.transferFrom(alice.address, bob.address, 1000);
       expect(await clintex.balanceOf(bob.address)).to.equal(bobBalanceBefore + 1000);
     })
