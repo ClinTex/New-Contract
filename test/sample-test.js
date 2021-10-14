@@ -22,13 +22,13 @@ describe("ClinTex", function () {
     it("Testing transferring Alice's tokens to Bob with transfer()", async() => {
       var bobBalanceBefore = BigNumber.from(await clintex.balanceOf(bob.address));
       await clintex.connect(alice).transfer(bob.address, 1000);
-      expect(await clintex.balanceOf(bob.address)).to.equal(bobBalanceBefore.add(1000));
+      expect(BigNumber.from(await clintex.balanceOf(bob.address))).to.equal(bobBalanceBefore.add(1000));
     })
 
     it("Testing transferring Alice's tokens to Bob with transferFrom()", async() => {
       var bobBalanceBefore = BigNumber.from(await clintex.balanceOf(bob.address));
       await clintex.transferFrom(alice.address, bob.address, 1000);
-      expect(await clintex.balanceOf(bob.address)).to.equal(bobBalanceBefore.add(1000));
+      expect(BigNumber.from(await clintex.balanceOf(bob.address))).to.equal(bobBalanceBefore.add(1000));
     })
   })
 
@@ -53,27 +53,27 @@ describe("ClinTex", function () {
 
       var bobBalanceBefore = BigNumber.from(await clintex.balanceOf(bob.address));
       await clintex.connect(alice).transfer(bob.address, 1000);
-      expect(await clintex.balanceOf(bob.address)).to.equal(bobBalanceBefore.add(1000));
+      expect(BigNumber.from(await clintex.balanceOf(bob.address))).to.equal(bobBalanceBefore.add(1000));
     })
 
-    it("Testing transferring Alice's unfreezed tokens to Bob with transfer()", async() => {
+    it("Testing transferring Alice's unfreezed tokens to Bob with transferFrom()", async() => {
       await clintex.setUnfreezeDate(1635724800);
       await clintex.setFreezeTokens(alice.address, await clintex.balanceOf(alice.address) / 2);
 
       var bobBalanceBefore = BigNumber.from(await clintex.balanceOf(bob.address));
       await clintex.transferFrom(alice.address, bob.address, 1000);
-      expect(await clintex.balanceOf(bob.address)).to.equal(bobBalanceBefore.add(1000));
+      expect(BigNumber.from(await clintex.balanceOf(bob.address))).to.equal(bobBalanceBefore.add(1000));
     })
   })
 
   describe("Basic transactions with freezing tokens until Nov 1 2020", function () {
-    it("Testing transferring Alice's all freezed tokens to Bob with transfer()", async() => {
+    it("Testing transferring Alice's all freezed tokens to Bob with transferFrom()", async() => {
       await clintex.setUnfreezeDate(1604178000);
       await clintex.setFreezeTokens(alice.address, await clintex.balanceOf(alice.address));
 
       var bobBalanceBefore = BigNumber.from(await clintex.balanceOf(bob.address));
       await clintex.transferFrom(alice.address, bob.address, 1000);
-      expect(await clintex.balanceOf(bob.address)).to.equal(bobBalanceBefore.add(1000));
+      expect(BigNumber.from(await clintex.balanceOf(bob.address))).to.equal(bobBalanceBefore.add(1000));
     })
 
     it("Testing transferring Alice's all freezed tokens to Bob with transferFrom()", async() => {
@@ -82,7 +82,7 @@ describe("ClinTex", function () {
 
       var bobBalanceBefore = BigNumber.from(await clintex.balanceOf(bob.address));
       await clintex.transferFrom(alice.address, bob.address, 1000);
-      expect(await clintex.balanceOf(bob.address)).to.equal(bobBalanceBefore.add(1000));
+      expect(BigNumber.from(await clintex.balanceOf(bob.address))).to.equal(bobBalanceBefore.add(1000));
     })
 
     it("Testing transferring Alice's unfreezed tokens to Bob with transfer()", async() => {
@@ -91,16 +91,16 @@ describe("ClinTex", function () {
 
       var bobBalanceBefore = BigNumber.from(await clintex.balanceOf(bob.address));
       await clintex.connect(alice).transfer(bob.address, 1000);
-      expect(await clintex.balanceOf(bob.address)).to.equal(bobBalanceBefore.add(1000));
+      expect(BigNumber.from(await clintex.balanceOf(bob.address))).to.equal(bobBalanceBefore.add(1000));
     })
 
-    it("Testing transferring Alice's unfreezed tokens to Bob with transfer()", async() => {
+    it("Testing transferring Alice's unfreezed tokens to Bob with transferFrom()", async() => {
       await clintex.setUnfreezeDate(1604178000);
       await clintex.setFreezeTokens(alice.address, await clintex.balanceOf(alice.address) / 2);
 
       var bobBalanceBefore = BigNumber.from(await clintex.balanceOf(bob.address));
       await clintex.transferFrom(alice.address, bob.address, 1000);
-      expect(await clintex.balanceOf(bob.address)).to.equal(bobBalanceBefore.add(1000));
+      expect(BigNumber.from(await clintex.balanceOf(bob.address))).to.equal(bobBalanceBefore.add(1000));
     })
 
   })
