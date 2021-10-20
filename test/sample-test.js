@@ -102,6 +102,23 @@ describe("ClinTex", function () {
       await clintex.transferFrom(alice.address, bob.address, 1000);
       expect(BigNumber.from(await clintex.balanceOf(bob.address))).to.equal(bobBalanceBefore.add(1000));
     })
+  })
 
+  describe("Testing setFreezeTokens", function () {
+    it("Putting null address", async() => {
+      await expect(clintex.setFreezeTokens(ethers.constants.AddressZero, 100)).to.be.revertedWith('ClinTex: address must not be empty');
+    })
+
+    it("An attempt to freeze an amount in excess of the allowed", async() => {
+      await clintex.setUnfreezeDate(1635724800);
+      await expect(clintex.setFreezeTokens(alice.address, BigNumber.from(await clintex.balanceOf(alice.address)).add(1000))).to.be.revertedWith('ClinTex: freeze amount exceeds allowance');
+    })
+  })
+
+  describe("Testing getFreezeTokens", function () {
+    it("Putting null address", async() => {
+      await clintex.setUnfreezeDate(1635724800);
+      await expect(clintex.getFreezeTokens(ethers.constants.AddressZero)).to.be.revertedWith('ClinTex: address must not be empty');
+    })
   })
 })

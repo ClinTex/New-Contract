@@ -2,6 +2,7 @@ require('dotenv').config();
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-ethers");
 require("@nomiclabs/hardhat-etherscan");
+require("solidity-coverage");
 
 const { API_URL, PRIVATE_KEY, ETHERSCAN_API_KEY } = process.env;
 
@@ -20,4 +21,5 @@ module.exports = {
    etherscan: {
       apiKey: ETHERSCAN_API_KEY,
    },
+   skipFiles: ['node_modules']
 }
