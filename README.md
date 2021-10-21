@@ -6,14 +6,13 @@
 
 ## FUNCTIONS:
 
+* <a href="#constructor">constructor(name, symbol, firstDate, secondDate)</a>
 * <a href="#allowance">allowance(owner, spender)</a>
 * <a href="#approve">approve(spender, amount)</a>
 * <a href="#balanceOf">balanceOf(account)</a>
 * <a href="#getFreezeTokens">getFreezeTokens(account)</a>
 * <a href="#isTransferFreezeTokens">isTransferFreezeTokens(account, amount)</a>
-* <a href="#mint">mint(account, amount)</a>
-* <a href="#setFreezeTokens">setFreezeTokens(account, amount)</a>
-* <a href="#setUnfreezeDate">setUnfreezeDate(date)</a>
+* <a href="#mint">mint(account, amount, flag)</a>
 * <a href="#totalSupply">totalSupply()</a>
 * <a href="#transfer">transfer(recipient, amount)</a>
 * <a href="#transferFrom">transferFrom(sender, recipient, amount)</a>
@@ -34,6 +33,17 @@ onlyOwner()
 Throws if called by any account other than the owner.
 #
 # FUNCTIONS
+<div id="constructor"></div>
+
+```
+constructor(string memory name, string memory symbol, uint256 firstDate, uint256 secondDate) 
+```                                                                 
+
+Initializing contract with first freeze date and second freeze date.
+
+ 
+
+#
 <div id="allowance"></div>
 
 ```
@@ -64,9 +74,13 @@ Returns the amount of tokens owned by account.
 <div id="getFreezeTokens"></div>
 
 ```
-getFreezeTokens(address account) public view returns uint256
+getFreezeTokens(address account, uint8 flag) public view returns uint256
 ```
 Returns the number of frozen tokens on the account.
+
+1. Frozen tokens until the first date.
+2. Frozen tokens until the second date.
+
 #
 <div id="isTransferFreezeTokens"></div>
 
@@ -80,25 +94,16 @@ Returns **TRUE** when transferring frozen tokens from the account.
 <div id="mint"></div>
 
 ```
-mint(address account, uint256 amount) public onlyOwner
+mint(address account, uint256 amount, uint8 flag) public onlyOwner
 ```
 Minting tokens to account.
-#
-<div id="setFreezeTokens"></div>
 
-```
-setFreezeTokens(address account, uint256 amount) public onlyOwner returns bool
-```
-Freezes tokens on the account.
+### Flags:
 
-Returns a boolean value indicating whether the operation succeeded.
-#
-<div id="setUnfreezeDate"></div>
+0. Without freezing.
+1. Freezing until the first date.
+2. Freezing until the second date.
 
-```
-setUnfreezeDate(uint256 date) public onlyOwner
-```
-Sets freeze UNIX-time.
 #
 <div id="totalSupply"></div>
 
