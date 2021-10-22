@@ -1,0 +1,28 @@
+{
+    "members": [
+      {
+        "address": "0xA96338D14eBb5D57C44262a3F429CEAc629A95d0",
+        "balance": 5000,
+        "frozenTokensBeforeTheFirstDate": 2500,
+        "frozenTokensBeforeTheSecondDate": 2500
+      },
+      {
+        "address": "0x3e28dfA358eeF2cc28cEFD37063Edd5A17845E52",
+        "balance": 1001,
+        "frozenTokensBeforeTheFirstDate": 950,
+        "frozenTokensBeforeTheSecondDate": 0
+      },
+      {
+        "address": "0xf86753B41f860146678b4e61E1B7798Db75b9df3",
+        "balance": 55555,
+        "frozenTokensBeforeTheFirstDate": 0,
+        "frozenTokensBeforeTheSecondDate": 12345
+      },
+      {
+        "address": "0x5c0a2DcaA1Cb649857a271d7433fb86b46d054De",
+        "balance": 9999,
+        "frozenTokensBeforeTheFirstDate": 0,
+        "frozenTokensBeforeTheSecondDate": 0
+      }
+    ]
+  }
