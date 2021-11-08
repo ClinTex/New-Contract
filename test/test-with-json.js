@@ -28,13 +28,13 @@ describe("ClinTex with JSON", function () {
         membersTokens = setMembersTokens(jsonData);
 
         const ClinTex = await ethers.getContractFactory("ClinTex");
-        clintex = await ClinTex.deploy("ClinTex", "CLI");
+        clintex = await ClinTex.deploy("ClinTex", "CLI", 1637884800, 1669420800);
     })
 
     describe("Basic transactions without freezing", function () {
         it("Testing transferring tokens with", async() => {
 
-          await clintex.init(1637884800, 1669420800, members, membersTokens);
+          await clintex.addMembers(members, membersTokens);
           memberAddress = ethers.utils.getAddress("0x5c0a2DcaA1Cb649857a271d7433fb86b46d054De");
           
           expect(BigNumber.from(await clintex.balanceOf(memberAddress))).to.equal(9999);

@@ -24,10 +24,10 @@ async function main() {
   membersTokens = setMembersTokens(jsonData);
 
   const ClinTex = await ethers.getContractFactory("ClinTex");
-  clintex = await ClinTex.deploy("ClinTex", "CLI");
+  clintex = await ClinTex.deploy("ClinTex", "CTI", 1637884800, 1669420800);
   console.log("ClinTex deployed to address:", clintex.address);
 
-  const check = await clintex.init(1637884800, 1669420800, members, membersTokens);
+  const check = await clintex.addMembers(members, membersTokens);
   if (check) {
     console.log("ClinTex has been initialized successfully!");
   } else {

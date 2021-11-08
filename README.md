@@ -2,16 +2,15 @@
 
 ## MODIFIERS:
 * <a href="#isFreeze">isFreeze(sender, amount)</a>
-* <a href="#isInitialized">isInitialized()</a>
 * <a href="#onlyOwner">onlyOwner()</a>
 
 ## FUNCTIONS:
 
 * <a href="#constructor">constructor(name, symbol, firstDate, secondDate)</a>
+* <a href="#addMembers">addMembers(address[] members, uint256[3][] membersTokens)</a>
 * <a href="#allowance">allowance(owner, spender)</a>
 * <a href="#approve">approve(spender, amount)</a>
 * <a href="#balanceOf">balanceOf(account)</a>
-* <a href="#init">init(firstDate, secondDate, address[] members, uint256[3][] membersTokens)</a>
 * <a href="#getFreezeTokens">getFreezeTokens(account)</a>
 * <a href="#isTransferFreezeTokens">isTransferFreezeTokens(account, amount)</a>
 * <a href="#totalSupply">totalSupply()</a>
@@ -26,13 +25,6 @@ isFreeze(address sender, uint256 amount)
 ``` 
 Throws if sender transfering for amount frozen tokens.
 #
-<div id="isInitialized"></div>
-
-```
-isInitialized() 
-``` 
-Throws if not initialized.
-#
 <div id="onlyOwner"></div>
 
 ```
@@ -44,10 +36,25 @@ Throws if called by any account other than the owner.
 <div id="constructor"></div>
 
 ```
-constructor(string memory name, string memory symbol) 
+constructor(string memory name, string memory symbol, uint256 firstDate, uint256 secondDate) 
 ```                                                                 
 This is a contract constructor.
 
+**firstDate** - date of the first freeze in UNIX
+
+**secondDate** - date of the second freeze in UNIX
+
+#
+<div id="addMembers"></div>
+
+```
+addMembers(address[] memory members, uint256[3][] memory membersTokens) external onlyOwner returns bool
+```
+Initializing the balance of members.
+
+**Args**:
+* **members** is the array of members address;
+* **membersTokens** is the double array of members tokens (balance, frozen tokens before the first date, frozen tokens before the second date).
 #
 <div id="allowance"></div>
 
@@ -75,19 +82,6 @@ Returns a boolean value indicating whether the operation succeeded.
 balanceOf(address account) external returns uint256
 ```
 Returns the amount of tokens owned by account.
-#
-<div id="init"></div>
-
-```
-init(uint256 firstDate, uint256 secondDate, address[] memory members, uint256[3][] memory membersTokens) external onlyOwner returns bool
-```
-Initializes the contract.
-
-**Args**:
-* **firstDate** is the first date of freezing;
-* **secondDate** is the second date of freezing;
-* **members** is the array of members address;
-* **membersTokens** is the double array of members tokens (balance, frozen tokens before the first date, frozen tokens before the second date).
 #
 <div id="getFreezeTokens"></div>
 
