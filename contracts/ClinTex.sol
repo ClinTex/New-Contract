@@ -15,7 +15,7 @@ contract ClinTex is ERC20, Ownable {
     uint256 private _firstUnfreezeDate;
     uint256 private _secondUnfreezeDate;
 
-    bool private _isInitialized = false;
+    address private _tokenSwapContract;
 
     //isFreeze check sender transfer for amount frozen tokens
     modifier isFreeze(address sender, uint256 amount) {
@@ -85,5 +85,16 @@ contract ClinTex is ERC20, Ownable {
             }
         }
         return false;
+    }
+
+    function setSwapTokensContract(address tokenSwapContract) external onlyOwner {
+        require(_tokenSwapContract == address(0), "ClinTex: _tokenSwapContract must be empty");
+        require(tokenSwapContract != address(0), "ClinTex: address must not be empty");
+        _tokenSwapContract = tokenSwapContract;
+    }
+
+    function mintForSwapTokens(uint256 amount) external onlyOwner {
+        require(_tokenSwapContract != address(0), "ClinTex: _tokenSwapContract must not be empty");
+        _mint(_tokenSwapContract, amount);
     }
 }

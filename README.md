@@ -1,3 +1,8 @@
+# TokenSwap
+
+## FUNCTIONS:
+* <a href="#swap">swap(amount)</a>
+#
 # ClinTex
 
 ## MODIFIERS:
@@ -13,9 +18,13 @@
 * <a href="#balanceOf">balanceOf(account)</a>
 * <a href="#getFreezeTokens">getFreezeTokens(account)</a>
 * <a href="#isTransferFreezeTokens">isTransferFreezeTokens(account, amount)</a>
+* <a href="#setSwapTokensContract">setSwapTokensContract(tokenSwapContract)</a>
+* <a href="#mintForSwapTokens">mintForSwapTokens(amount)</a>
 * <a href="#totalSupply">totalSupply()</a>
 * <a href="#transfer">transfer(recipient, amount)</a>
 * <a href="#transferFrom">transferFrom(sender, recipient, amount)</a>
+
+#
 
 # MODIFIERS
 <div id="isFreeze"></div>
@@ -102,6 +111,38 @@ isTransferFreezeTokens(address account, uint256 amount) public view returns bool
 Returns a boolean value indicating whether the transfering frozen tokens from account.
 
 Returns **TRUE** when transferring frozen tokens from the account.
+
+#
+<div id="mintForSwapTokens"></div>
+
+```
+mintForSwapTokens(uint256 amount) external onlyOwner
+```
+Mint amount tokens to **TokenSwap** contract.
+
+#
+<div id="setSwapTokensContract"></div>
+
+```
+setSwapTokensContract(address tokenSwapContract) external onlyOwner
+```
+Set the **TokenSwap** contract address.
+
+#
+<div id="swap"></div>
+
+```
+swap(uint256 amount) public
+```
+Swap old CTI tokens for new CTI tokens. 
+
+Example:
+```
+await clintex.setSwapTokensContract(tokenSwap.address);
+await alice.call(testToken.approve(tokenSwap.address, 1234567890));
+await clintex.mintForSwapTokens(1234567890);
+await alice.call(tokenSwap.swap(1234567890));
+```
 
 #
 <div id="totalSupply"></div>

@@ -265,15 +265,6 @@ describe("ClinTex", function () {
       const ClinTex = await ethers.getContractFactory("ClinTex");
       
       await expect(ClinTex.deploy("ClinTex", "CTI", 1669420800, 1637884800)).to.be.revertedWith('ClinTex: first unfreeze date cannot be greater than the second date');
-
-      //await expect(clintex.init(1669420800, 1637884800, members, membersTokens)).to.be.revertedWith('ClinTex: first unfreeze date cannot be greater than the second date');
     })
-
-    /*it("Double init", async() => {
-      membersTokens = [[5000, 0, 0], [0, 0, 0]];
-      await clintex.init(1606348800, 1669420800, members, membersTokens);
-      await expect(clintex.init(1606348800, 1669420800, members, membersTokens)).to.be.revertedWith('ClinTex: the contract has already been initialized');
-    })*/
   })
-
 })
